@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ankit Mishra's Game</title>
+    <style>
+    body {
+        background: linear-gradient(180deg, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height:100vh;
+        margin:0;
+    }
+
+    #game {
+        background-color: #fff;
+        text-align: center;
+        width: 700px;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0px 12px 30px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        color: rgb(51, 51, 51);
+        margin-bottom: 10px;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        color: rgb(85, 85, 85);
+        font-style: italic;
+        margin-bottom: 30px;
+    }
+    
+    button {
+        width: 150px;
+        height: 150px;
+    }
+
+    .options {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 15px 30px;
+        margin: 15px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .options:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0px 12px 25px rgba(0,0,0,0.25);
+    }
+
+    #Rock {
+        background-color: #ff6f61;
+        color: #fff;
+    }
+
+    #Paper {
+        background-color: #ffba08;
+        color: #333;
+    }
+
+    #Scissor {
+        background-color: #4ecdc4;
+        color: #fff;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #222;
+        margin: 10px 0;
+    }
+</style>
+
+</head>
+<body>
+    <div id="game">
+        <img src="ROCK_PAPER_SCISSORS.svg" />
+        <!-- <h1>Welcome to Rock Paper Scissor Game</h1> -->
+        <h3>Designed by Ankit Mishra</h3>
+        <br>
+        <button id="Rock" class="options" onClick="play('Rock')">Rock</button>
+        <button id="Paper" class="options" onClick="play('Paper')">Paper</button>
+        <button id="Scissor" class="options" onClick="play('Scissor')">Scissor</button>
+        <br><br>
+        <h2 id="uscore">Your Score:-0</h2>
+        <h2 id="cscore">Computer Score:-0</h2>
+    </div>
+
+    <script>
+        let yourscore = 0;
+        let computerscore = 0;
+
+        function comgues() {
+            let random = Math.random() * 3;
+            if (random <= 1) {
+                return 'Scissor';
+            } else if (random <= 2) {
+                return 'Paper';
+            } else {
+                return 'Rock';
+            }
+        }
+
+        function play(userchoice) {
+            const cchoice = comgues();
+            
+            if (
+                (userchoice === 'Rock' && cchoice === 'Scissor') ||
+                (userchoice === 'Paper' && cchoice === 'Rock') ||
+                (userchoice === 'Scissor' && cchoice === 'Paper')
+            ) {
+                yourscore += 1;
+                alert(`Your choice is ${userchoice}.\nComputer choice is ${cchoice}.\n\nYou Win! 🏆`);
+            } else if (userchoice === cchoice) {
+                alert(`Your choice is ${userchoice}.\nComputer choice is ${cchoice}.\n\nIt's a Tie! 😐`);
+            } else {
+                computerscore += 1;
+                alert(`Your choice is ${userchoice}.\nComputer choice is ${cchoice}.\n\nComputer Wins! 🤖`);
+            }
+            document.querySelector('#uscore').innerText = `Your Score:-${yourscore}`;
+            document.querySelector('#cscore').innerText = `Computer Score:-${computerscore}`;
+        }
+    </script>
+</body>
+</html>
